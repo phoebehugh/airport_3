@@ -20,8 +20,9 @@ class Airport
     true
   end
 
-  def park(plane)
-    @hangar << plane
+  def park(something)
+    something.land!
+    @hangar << something # these are totally separate!
   end
 
 end
