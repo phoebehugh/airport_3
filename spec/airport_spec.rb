@@ -3,21 +3,30 @@ require 'airport'
 describe Airport do
   let(:luton) {Airport.new }
 
-  it "has a default capacity" do
-    luton = Airport.new
-    expect(luton.capacity).to eq 10
-  end
+  context "when created" do
 
-  it "can have a custom capacity" do
-    luton = Airport.new(capacity: 20)
-    expect(luton.capacity).to eq 20
-  end
+    it "has a default capacity" do
+      expect(luton.capacity).to eq 10
+    end
 
-  it "has an empty hanger when created" do
-    expect(luton).to be_empty
-  end
+    it "has an empty hanger" do
+    expect(luton.planes_count).to eq 0
+    end
 
-  it "knows how many slots it has" do
+    it "knows it has 10 slots available" do
     expect(luton.slots).to eq 10
+    end
+
   end
+
+    it "can have a custom capacity" do
+      luton = Airport.new(capacity: 20)
+      expect(luton.capacity).to eq 20
+    end
+
+  it "has one plane after parking one" do
+    luton.park(:a_plane)
+    expect(luton.planes_count).to eq 1
+  end
+
 end
